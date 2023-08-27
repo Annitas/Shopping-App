@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct Products: Codable {
+    let id: Int
+    let title: String
+    let price: String
+    let location: String
+    let image_url: String
+    let created_date: String //String?
+}
