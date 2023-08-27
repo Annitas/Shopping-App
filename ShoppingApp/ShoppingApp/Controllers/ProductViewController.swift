@@ -14,7 +14,10 @@ final class ProductViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-//        title = "Products"
-        // Do any additional setup after loading the view.
+
+        let request1 = Request(pathComponent: "13")
+        print(request1.url)
+        let request2 = Request()
+        print(request2.url)
     }
 }
