@@ -13,7 +13,40 @@ final class Service {
     
     private init() {}
     
-    public func execute(_ request: Request, completion: @escaping (Result<String, Error>) -> Void) {
+    enum ServiceError: Error {
+        case failedToCreateRequest
+        case failedToGetData
+    }
+    
+    public func execute<T: Codable>(_ request: Request,
+                                    expecting type: T.Type,
+                                    completion: @escaping (Result<T, Error>) -> Void) {
+        guard let urlRequest = self.request(from: request) else {
+            completion(.failure(ServiceError.failedToCreateRequest))
+            return
+        }
         
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+            guard let data = data, error == nil  else {
+                completion(.failure(error ?? ServiceError.failedToGetData))
+                return
+            }
+            
+            // Decode response
+            do {
+                let json = try JSONSerialization.jsonObject(with: data)
+                print(String(describing: json))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
+    private func request(from productRequest: Request) -> URLRequest? {
+        guard let url = productRequest.url else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = productRequest.httpMethod // GET
+        return request
     }
 }

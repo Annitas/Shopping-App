@@ -15,9 +15,14 @@ final class ProductViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
 
-        let request1 = Request(pathComponent: "13")
-        print(request1.url)
-        let request2 = Request()
-        print(request2.url)
+        
+        Service.shared.execute(.listProductRequest, expecting: Products.self) { result in
+            switch result{
+            case .success(let model):
+                print(String(describing: model))
+            case .failure(let error):
+                print(String(describing: error))
+            }
+        }
     }
 }

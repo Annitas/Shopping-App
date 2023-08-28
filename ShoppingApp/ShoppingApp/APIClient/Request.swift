@@ -23,7 +23,6 @@ final class Request {
     var urlString: String {
         var string = Constants.baseURL
         
-        
         if !pathComponent.isEmpty {
             string += "\(Constants.detailPageURL)/\(pathComponent).json"
         } else {
@@ -36,7 +35,13 @@ final class Request {
         return URL(string: urlString)
     }
     
+    public let httpMethod = "GET"
+    
     public init(pathComponent: String = "") {
         self.pathComponent = pathComponent
     }
+}
+
+extension Request {
+    static let listProductRequest = Request()
 }
