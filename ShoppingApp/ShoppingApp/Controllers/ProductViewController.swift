@@ -16,7 +16,7 @@ final class ProductViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         
-        Service.shared.execute(.listProductRequest, expecting: Products.self) { result in
+        Service.shared.execute(.listProductRequest, expecting: Welcome.self) { result in
             switch result{
             case .success(let model):
                 print(String(describing: model))

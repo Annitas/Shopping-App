@@ -7,11 +7,20 @@
 
 import Foundation
 
-struct Products: Codable {
-    let id: Int
-    let title: String
-    let price: String
-    let location: String
-    let image_url: String
-    let created_date: String //String?
+// MARK: - Welcome
+struct Welcome: Codable {
+    let advertisements: [Advertisement]
+}
+
+// MARK: - Advertisement
+struct Advertisement: Codable {
+    let id, title, price, location: String
+    let imageURL: String
+    let createdDate: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, price, location
+        case imageURL = "image_url"
+        case createdDate = "created_date"
+    }
 }
