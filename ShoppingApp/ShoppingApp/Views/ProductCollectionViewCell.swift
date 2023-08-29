@@ -13,7 +13,9 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     // Product image
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -41,37 +43,47 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(locationLabel)
         addConstraints()
+        setupLayer()
     }
     
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
     
+    private func setupLayer() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.shadowColor = UIColor.label.cgColor
+        contentView.layer.cornerRadius = 4
+        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
+        contentView.layer.shadowOpacity = 0.3
+    }
+    
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.heightAnchor.constraint(equalToConstant: 40),
-            locationLabel.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30),
+            locationLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
-            locationLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            locationLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
+            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
+            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
+            locationLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
+            locationLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
             
             locationLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
-            titleLabel.bottomAnchor.constraint(equalTo: locationLabel.topAnchor, constant: -3),
+            titleLabel.bottomAnchor.constraint(equalTo: locationLabel.topAnchor),
             
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -2),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
         ])
-        
-//        titleLabel.backgroundColor = .blue
-//        locationLabel.backgroundColor = .systemMint
-//        imageView.backgroundColor = .systemCyan
 //        |   Image  |
 //        |   Title  |
 //        | Location |
+    }
+    // Save shadows when change dark mode to light mode
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupLayer()
     }
     
     override func prepareForReuse() {

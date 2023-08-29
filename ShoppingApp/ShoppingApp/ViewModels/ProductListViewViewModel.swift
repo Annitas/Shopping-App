@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ProductListViewViewModelDelegate: AnyObject {
+    func didLoadInitialProducts()
+}
+
 final class ProductListViewViewModel: NSObject {
+    public weak var delegate: ProductListViewViewModelDelegate?
+    
     private var products: [Advertisement] = [] {
         didSet {
             for product in products {
@@ -26,6 +32,9 @@ final class ProductListViewViewModel: NSObject {
                 case .success(let responseModel):
                     let results = responseModel.advertisements
                     self?.products = results
+                    DispatchQueue.main.async {
+                        self?.delegate?.didLoadInitialProducts()
+                    }
                 case .failure(let error):
                     print(String(describing: error))
                 }

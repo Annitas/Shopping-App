@@ -39,6 +39,7 @@ final class ProductListView: UIView {
         
         addConstraints()
         spinner.startAnimating()
+        viewModel.delegate = self
         viewModel.fetchProducts()
         setUpCollectionView()
     }
@@ -64,12 +65,16 @@ final class ProductListView: UIView {
     private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel as any UICollectionViewDelegate
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.spinner.stopAnimating()
-            self.collectionView.isHidden = false
-            UIView.animate(withDuration: 0.4) {
-                self.collectionView.alpha = 1
-            }
-        })
+    }
+}
+
+extension ProductListView: ProductListViewViewModelDelegate {
+    func didLoadInitialProducts() {
+        spinner.stopAnimating()
+        collectionView.isHidden = false
+        collectionView.reloadData() // initial fetch
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 1
+        }
     }
 }
