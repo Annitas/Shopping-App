@@ -12,3 +12,4 @@ import Foundation
 struct GetAllProductsResponse: Codable {
     let advertisements: [Advertisement]
 }
+

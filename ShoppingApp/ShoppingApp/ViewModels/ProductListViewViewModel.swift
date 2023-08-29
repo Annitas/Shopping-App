@@ -8,12 +8,24 @@
 import UIKit
 
 final class ProductListViewViewModel: NSObject {
-    func fetchProducts() {
-        Service.shared.execute(.listProductRequest, expecting: GetAllProductsResponse.self) { result in
+    private var products: [Advertisement] = [] {
+        didSet {
+            for product in products {
+                let viewModel = ProductCollectionViewCellViewModel(productTitle: product.title, productLocation: product.location, productImageURL: URL(string: product.imageURL))
+                cellViewModels.append(viewModel)
+            }
+        }
+    }
+    
+    private var cellViewModels: [ProductCollectionViewCellViewModel] = []
+    
+    public func fetchProducts() {
+        Service.shared.execute(.listProductRequest,
+                               expecting: GetAllProductsResponse.self) { [weak self] result in
                 switch result{
-                case .success(let model):
-//                    let first = model.advertisements[0].imageURL
-                    print("Example image url:" + String(model.advertisements.first?.imageURL ?? "No image") )
+                case .success(let responseModel):
+                    let results = responseModel.advertisements
+                    self?.products = results
                 case .failure(let error):
                     print(String(describing: error))
                 }
@@ -23,7 +35,7 @@ final class ProductListViewViewModel: NSObject {
 
 extension ProductListViewViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -32,10 +44,7 @@ extension ProductListViewViewModel: UICollectionViewDataSource, UICollectionView
             for: indexPath) as? ProductCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        let viewModel = ProductCollectionViewCellViewModel(productTitle: "Anita",
-                                                           productLocation: "Omsk",
-                                                           productImageURL: URL(string: "https://www.avito.st/s/interns-ios/images/1.png"))
-        cell.configure(with: viewModel)
+        cell.configure(with: cellViewModels[indexPath.row])
         return cell
     }
     

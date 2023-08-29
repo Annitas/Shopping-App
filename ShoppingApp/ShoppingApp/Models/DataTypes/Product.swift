@@ -7,10 +7,6 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct Welcome: Codable {
-    let advertisements: [Advertisement]
-}
 
 // MARK: - Advertisement
 struct Advertisement: Codable {
