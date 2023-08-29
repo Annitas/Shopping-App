@@ -20,11 +20,14 @@ final class ProductListView: UIView {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(ProductCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ProductCollectionViewCell.cellIdentifier)
         return collectionView
     }()
     
@@ -37,6 +40,7 @@ final class ProductListView: UIView {
         addConstraints()
         spinner.startAnimating()
         viewModel.fetchProducts()
+        setUpCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -55,5 +59,17 @@ final class ProductListView: UIView {
             collectionView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor)
         ])
+    }
+    
+    private func setUpCollectionView() {
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel as any UICollectionViewDelegate
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.spinner.stopAnimating()
+            self.collectionView.isHidden = false
+            UIView.animate(withDuration: 0.4) {
+                self.collectionView.alpha = 1
+            }
+        })
     }
 }
