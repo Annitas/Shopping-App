@@ -9,6 +9,7 @@ import UIKit
 
 final class ProductDetailViewViewModel {
     private let product: Advertisement
+//    private let productDetails: Detail
     
     enum SectionType {
         case photo(viewModel: ProductPhotoCollectionViewCellViewModel)
@@ -27,18 +28,18 @@ final class ProductDetailViewViewModel {
     
     private func setUpSections() {
         sections = [
-            .photo(viewModel: .init()),
+            .photo(viewModel: .init(imageURL: URL(string: product.imageURL))),
             .information(viewModels: [
-                .init(),
-                .init(),
-                .init(),
-                .init()
+                .init(value: product.title, title: "Title"),
+                .init(value: product.price, title: "Price"),
+                .init(value: product.location, title: "Location"),
+                .init(value: product.createdDate, title: "Created date")
             ]),
             .description(viewModels: [
-                .init(),
-                .init(),
-                .init(),
-                .init()
+                .init(value: "", title: "Description"),
+                .init(value: "", title: "Email"),
+                .init(value: "", title: "Phone number"),
+                .init(value: "", title: "Address")
             ])
         ]
     }

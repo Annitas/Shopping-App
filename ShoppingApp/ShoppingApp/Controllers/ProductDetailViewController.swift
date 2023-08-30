@@ -78,21 +78,21 @@ extension ProductDetailViewController: UICollectionViewDelegate, UICollectionVie
                 withReuseIdentifier: ProductPhotoCollectionViewCell.cellIdentifier,
                 for: indexPath) as? ProductPhotoCollectionViewCell else { fatalError() }
             cell.configure(with: viewModel)
-            cell.backgroundColor = .systemPink
+//            cell.backgroundColor = .systemPink
             return cell
         case .information(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ProductInfoCollectionViewCell.cellIdentifier,
                 for: indexPath) as? ProductInfoCollectionViewCell else { fatalError() }
             cell.configure(with: viewModels[indexPath.row])
-            cell.backgroundColor = .green
+//            cell.backgroundColor = .green
             return cell
         case .description(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ProductDescriptionCollectionViewCell.cellIdentifier,
                 for: indexPath) as? ProductDescriptionCollectionViewCell else { fatalError() }
             cell.configure(with: viewModels[indexPath.row])
-            cell.backgroundColor = .systemBlue
+//            cell.backgroundColor = .systemBlue
             return cell
         }
     }
