@@ -22,7 +22,6 @@ final class ProductCollectionViewCellViewModel {
     }
     
     public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
-        // TODO: - Abstract to image manager
         guard let url = productImageURL else {
             completion(.failure(URLError(.badURL)))
             return

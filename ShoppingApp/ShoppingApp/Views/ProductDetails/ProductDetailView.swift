@@ -54,8 +54,12 @@ final class ProductDetailView: UIView {
             return self.createSection(for: sectionIndex)
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self,
-                                forCellWithReuseIdentifier: "cell")
+        collectionView.register(ProductPhotoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ProductPhotoCollectionViewCell.cellIdentifier)
+        collectionView.register(ProductInfoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ProductInfoCollectionViewCell.cellIdentifier)
+        collectionView.register(ProductDescriptionCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ProductDescriptionCollectionViewCell.cellIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }

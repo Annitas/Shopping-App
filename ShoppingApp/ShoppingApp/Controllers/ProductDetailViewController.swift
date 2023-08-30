@@ -71,15 +71,29 @@ extension ProductDetailViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if indexPath.section == 0 {
-            cell.backgroundColor = .black
-        } else if indexPath.section == 1 {
-            cell.backgroundColor = .systemMint
-        } else {
-            cell.backgroundColor = .yellow
+        let sectionType = viewModel.sections[indexPath.section]
+        switch sectionType {
+        case .photo(let viewModel):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProductPhotoCollectionViewCell.cellIdentifier,
+                for: indexPath) as? ProductPhotoCollectionViewCell else { fatalError() }
+            cell.configure(with: viewModel)
+            cell.backgroundColor = .systemPink
+            return cell
+        case .information(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProductInfoCollectionViewCell.cellIdentifier,
+                for: indexPath) as? ProductInfoCollectionViewCell else { fatalError() }
+            cell.configure(with: viewModels[indexPath.row])
+            cell.backgroundColor = .green
+            return cell
+        case .description(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProductDescriptionCollectionViewCell.cellIdentifier,
+                for: indexPath) as? ProductDescriptionCollectionViewCell else { fatalError() }
+            cell.configure(with: viewModels[indexPath.row])
+            cell.backgroundColor = .systemBlue
+            return cell
         }
-
-        return cell
     }
 }
