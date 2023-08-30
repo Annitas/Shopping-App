@@ -9,8 +9,10 @@ import UIKit
 
 // MARK: - Controller to show info about single character
 final class ProductDetailViewController: UIViewController {
+    private let viewModel: ProductDetailViewViewModel
     
     init(viewModel: ProductDetailViewViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -23,6 +23,7 @@
 		759312D52A9E56290088B015 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759312D42A9E56290088B015 /* ProductDetailViewController.swift */; };
 		759312D72A9E5C810088B015 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759312D62A9E5C810088B015 /* ProductDetailView.swift */; };
 		759312D92A9E5CAD0088B015 /* ProductDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759312D82A9E5CAD0088B015 /* ProductDetailViewViewModel.swift */; };
+		759312DB2A9F36590088B015 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759312DA2A9F36590088B015 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		759312D42A9E56290088B015 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		759312D62A9E5C810088B015 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		759312D82A9E5CAD0088B015 /* ProductDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewViewModel.swift; sourceTree = "<group>"; };
+		759312DA2A9F36590088B015 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		759312BC2A9B62460088B015 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				759312DA2A9F36590088B015 /* ImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				759312D12A9DA7980088B015 /* ProductCollectionViewCell.swift in Sources */,
 				759312A42A9B5D4A0088B015 /* AppDelegate.swift in Sources */,
 				759312D52A9E56290088B015 /* ProductDetailViewController.swift in Sources */,
+				759312DB2A9F36590088B015 /* ImageLoader.swift in Sources */,
 				759312CB2A9D078A0088B015 /* GetAllProductsResponse.swift in Sources */,
 				759312C32A9B6D4F0088B015 /* Service.swift in Sources */,
 				759312CD2A9D0C8E0088B015 /* ProductListViewViewModel.swift in Sources */,
