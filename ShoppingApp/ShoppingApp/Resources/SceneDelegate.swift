@@ -14,13 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowscene = (scene as? UIWindowScene) else { return }
-        
-        let vc = ProductViewController()
-        
         let window = UIWindow(windowScene: windowscene)
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
+        window.rootViewController = ProductViewController()
         self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
