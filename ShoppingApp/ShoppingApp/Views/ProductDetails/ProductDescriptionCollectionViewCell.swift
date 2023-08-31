@@ -73,7 +73,6 @@ class ProductDescriptionCollectionViewCell: UICollectionViewCell {
             iconImageView.widthAnchor.constraint(equalToConstant: 30),
             iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-//            iconImageView.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor, constant: -10),
             
             valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
             valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),

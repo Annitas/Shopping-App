@@ -68,7 +68,6 @@ extension ProductListViewViewModel: UICollectionViewDataSource, UICollectionView
         collectionView.deselectItem(at: indexPath, animated: true)
         let product = products[indexPath.row]
         delegate?.didSelectProduct(product)
-        
     }
 }
 

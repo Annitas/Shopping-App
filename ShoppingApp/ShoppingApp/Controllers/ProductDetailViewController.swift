@@ -28,18 +28,11 @@ final class ProductDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(detailView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
-                                                            target: self,
-                                                            action: #selector(didTapShare))
         addConstraints()
         
         detailView.collectionView?.delegate = self
         detailView.collectionView?.dataSource = self
         viewModel.fetchProductInfo()
-    }
-
-    @objc func didTapShare() {
-        
     }
     
     func addConstraints() {
@@ -59,7 +52,7 @@ extension ProductDetailViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let sectionType = viewModel.sections[section]
         switch sectionType {
-        case .photo(let viewModel):
+        case .photo(_):
             return 1
         case .information(let viewModels):
             return viewModels.count
