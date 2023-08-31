@@ -33,6 +33,6 @@ final class ProductViewController: UIViewController, ProductListViewDelegate {
         let viewModel = ProductDetailViewViewModel(product: product)
         let detailVC = ProductDetailViewController(viewModel: viewModel)
         present(detailVC, animated: true, completion: nil)
-//        print(product)
+        print("ProductViewController: \(product)")
     }
 }

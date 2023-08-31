@@ -14,13 +14,17 @@ import Foundation
 final class ProductDescriptionCollectionViewCellViewModel {
     public let value: String
     public let title: String
-//    public let location: String
-//    public let createdDate: String
     
     init(value: String, title: String) {
         self.value = value
         self.title = title
-//        self.location = location
-//        self.createdDate = createdDate
     }
+    
+//    public func fetchDetailInfo() {
+//        guard let imageURL = imageURL else {
+//            completion(.failure(URLError(.badURL)))
+//            return
+//        }
+//        ImageLoader.shared.downLoadImage(imageURL, completion: completion)
+//    }
 }

@@ -42,7 +42,7 @@ final class ProductInfoCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .tertiarySystemBackground
+        contentView.backgroundColor = .gray.withAlphaComponent(0.2)
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.addSubview(valueLabel)
@@ -92,6 +92,5 @@ final class ProductInfoCollectionViewCell: UICollectionViewCell {
     public func configure(with viewModel: ProductInfoCollectionViewCellViewModel) {
         titleLabel.text = viewModel.title
         valueLabel.text = viewModel.value
-        print(viewModel.value)
     }
 }
