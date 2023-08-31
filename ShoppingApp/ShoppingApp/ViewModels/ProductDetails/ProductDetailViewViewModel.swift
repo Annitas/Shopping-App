@@ -18,9 +18,6 @@ final class ProductDetailViewViewModel {
     
     public var sections: [SectionType] = []
 
-    
-    
-    
     init(product: Advertisement) {
         self.product = product
         setUpSections()
@@ -100,7 +97,7 @@ final class ProductDetailViewViewModel {
                                                      trailing: 0)
         let group = NSCollectionLayoutGroup.vertical(layoutSize:  NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(150)
+            heightDimension: .fractionalHeight(0.5)
         ), subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
 

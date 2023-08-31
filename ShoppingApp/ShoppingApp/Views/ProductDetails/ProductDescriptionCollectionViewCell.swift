@@ -90,6 +90,7 @@ class ProductDescriptionCollectionViewCell: UICollectionViewCell {
     
     public func configure(with viewModel: ProductDescriptionCollectionViewCellViewModel) {
         titleLabel.text = viewModel.title
-        valueLabel.text = viewModel.products.description
+        let str = String("Описание: \(viewModel.products.description) \n Email: \(viewModel.products.email) \n Телефон: \(viewModel.products.phoneNumber) \n Адрес: \(viewModel.products.address)")
+        valueLabel.text = str
     }
 }
