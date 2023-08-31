@@ -14,39 +14,28 @@ import Foundation
 final class ProductDescriptionCollectionViewCellViewModel {
     public let productID: String
     public let title: String
+    public var address: String = ""
     public var products = Detail(id: "", title: "", price: "", location: "", imageURL: "", createdDate: "", description: "", email: "", phoneNumber: "", address: "")
     
     init(productID: String, title: String) {
         self.productID = productID
         self.title = title
         returnProductDetail()
+        print(products.address)
     }
     
     private func returnProductDetail() {
         let request = Request(pathComponent: productID)
-        Service.shared.execute(request, expecting: Detail.self) { result in
-            switch result {
-            case .success(let success):
-                self.products.description = success.description
-                self.products.address = success.address
-                self.products.phoneNumber = success.phoneNumber
-                self.products.email = success.email
-                print(String(describing: success))
-            case .failure(let error):
-                print(String(describing: error))
-            }
-        }
-    }
-    
-    public func fetchProd(completion: @escaping (Result<Data, Error>) -> Void) {
-        Service.shared.execute(Request(pathComponent: productID),
-                               expecting: GetDetailProductResponse.self) { [weak self] result in
-            switch result{
-            case .success(let responseModel):
-                let results = responseModel.productD
-                self?.products = results
-            case .failure(let error):
-                print(String(describing: error))
+        DispatchQueue.main.async {
+            Service.shared.execute(request, expecting: Detail.self) { result in
+                switch result {
+                case .success(let data):
+                    self.products = data
+                    print("DETAAAILS")
+//                    print(String(describing: success))
+                case .failure(let error):
+                    print(String(describing: error))
+                }
             }
         }
     }
