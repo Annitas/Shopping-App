@@ -30,10 +30,10 @@ final class ProductDetailViewViewModel {
         sections = [
             .photo(viewModel: .init(imageURL: URL(string: product.imageURL))),
             .information(viewModels: [
-                .init(value: product.title, title: "Title"),
-                .init(value: product.price, title: "Price"),
-                .init(value: product.location, title: "Location"),
-                .init(value: product.createdDate, title: "Created date")
+                .init(value: product.title, title: "Название"),
+                .init(value: product.price, title: "Цена"),
+                .init(value: product.location, title: "Город"),
+                .init(value: product.createdDate, title: "Дата публикации")
             ]),
             .description(viewModels: [
                 .init(value: "", title: "Description"),
