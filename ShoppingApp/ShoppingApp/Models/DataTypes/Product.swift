@@ -24,8 +24,8 @@ struct Advertisement: Codable {
 struct Detail: Codable {
     let id, title, price, location: String
     let imageURL: String
-    let createdDate, description, email, phoneNumber: String
-    let address: String
+    var createdDate, description, email, phoneNumber: String
+    var address: String
 
     enum CodingKeys: String, CodingKey {
         case id, title, price, location

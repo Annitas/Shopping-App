@@ -13,3 +13,6 @@ struct GetAllProductsResponse: Codable {
     let advertisements: [Advertisement]
 }
 
+struct GetDetailProductResponse: Codable {
+    let productD: Detail
+}

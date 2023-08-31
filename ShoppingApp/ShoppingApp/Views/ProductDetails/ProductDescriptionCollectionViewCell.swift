@@ -91,6 +91,6 @@ class ProductDescriptionCollectionViewCell: UICollectionViewCell {
     
     public func configure(with viewModel: ProductDescriptionCollectionViewCellViewModel) {
         titleLabel.text = viewModel.title
-        valueLabel.text = viewModel.value
+        valueLabel.text = viewModel.products.description
     }
 }
