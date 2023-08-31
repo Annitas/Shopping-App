@@ -9,7 +9,6 @@ import UIKit
 
 final class ProductDetailViewViewModel {
     private let product: Advertisement
-//    private let productDetails: Detail
     
     enum SectionType {
         case photo(viewModel: ProductPhotoCollectionViewCellViewModel)
@@ -18,6 +17,7 @@ final class ProductDetailViewViewModel {
     }
     
     public var sections: [SectionType] = []
+
     
     
     
@@ -36,10 +36,10 @@ final class ProductDetailViewViewModel {
                 .init(value: product.createdDate, title: "Дата публикации")
             ]),
             .description(viewModels: [
-                .init(value: "", title: "Описание"),
-                .init(value: "", title: "Email"),
-                .init(value: "", title: "Телефон"),
-                .init(value: "", title: "Адрес")
+                .init(productID: product.id, title: "Описание"),
+                .init(productID: product.id, title: "Email"),
+                .init(productID: product.id, title: "Телефон"),
+                .init(productID: product.id, title: "Адрес")
             ])
         ]
     }
@@ -109,7 +109,6 @@ final class ProductDetailViewViewModel {
     
     public func fetchProductInfo() {
         let request = Request(pathComponent: product.id)
-//        print(request)
         Service.shared.execute(request, expecting: Detail.self) { result in
             switch result {
             case .success(let success):

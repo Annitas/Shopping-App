@@ -19,13 +19,10 @@ final class Request {
         
     }
     private let pathComponent: String
-    
     var urlString: String {
         var string = Constants.baseURL
-        
         if !pathComponent.isEmpty {
             string += "\(Constants.detailPageURL)/\(pathComponent).json"
-            print(string)
         } else {
             string += Constants.mainPageUrl        }
         return string
@@ -44,5 +41,4 @@ final class Request {
 
 extension Request {
     static let listProductRequest = Request()
-    
 }
