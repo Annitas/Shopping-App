@@ -56,8 +56,8 @@ extension ProductDetailViewController: UICollectionViewDelegate, UICollectionVie
             return 1
         case .information(let viewModels):
             return viewModels.count
-        case .description(let viewModels):
-            return viewModels.count
+        case .description(_):
+            return 1
         }
     }
 
