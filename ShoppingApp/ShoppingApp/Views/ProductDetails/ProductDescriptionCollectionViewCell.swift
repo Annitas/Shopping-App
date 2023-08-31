@@ -13,7 +13,8 @@ class ProductDescriptionCollectionViewCell: UICollectionViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 17, weight: .light)
+        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
