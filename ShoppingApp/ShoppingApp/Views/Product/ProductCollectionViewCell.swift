@@ -94,7 +94,21 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with viewModel: ProductCollectionViewCellViewModel) {
-        titleLabel.text = viewModel.productTitle
+        let text = viewModel.productTitle
+        let attributedText = NSMutableAttributedString(string: text)
+        let font = UIFont.systemFont(ofSize: 18)
+        let lineHeight = font.lineHeight + 5 // Добавляем немного дополнительного пространства между строками
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
+        attributedText.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
+        attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: text.count))
+        titleLabel.attributedText = attributedText
+        titleLabel.numberOfLines = 0 // Устанавливаем количество строк на 0, чтобы текст не обрезался
+        titleLabel.sizeToFit() // Автоматически подстраиваем размеры UILabel под текст
+
+        
+//        titleLabel.text = viewModel.productTitle
+        titleLabel.sizeToFit()
         locationLabel.text = viewModel.productLocation
         viewModel.fetchImage { [weak self] result in
             switch result {

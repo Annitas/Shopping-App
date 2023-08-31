@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol ProductListViewDelegate: AnyObject {
+    func productListView (_ productListView: ProductListView,
+                          didSelectProduct product: Advertisement)
+}
+
 final class ProductListView: UIView {
+    
+    public weak var delegate: ProductListViewDelegate?
 
     private let viewModel = ProductListViewViewModel()
     
@@ -21,7 +28,7 @@ final class ProductListView: UIView {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 7, bottom: 10, right: 7)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
@@ -69,6 +76,10 @@ final class ProductListView: UIView {
 }
 
 extension ProductListView: ProductListViewViewModelDelegate {
+    func didSelectProduct(_ product: Advertisement) {
+        delegate?.productListView(self, didSelectProduct: product)
+    }
+    
     func didLoadInitialProducts() {
         spinner.stopAnimating()
         collectionView.isHidden = false
