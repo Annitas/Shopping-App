@@ -36,10 +36,10 @@ final class ProductDetailViewViewModel {
                 .init(value: product.createdDate, title: "Дата публикации")
             ]),
             .description(viewModels: [
-                .init(value: "", title: "Description"),
+                .init(value: "", title: "Описание"),
                 .init(value: "", title: "Email"),
-                .init(value: "", title: "Phone number"),
-                .init(value: "", title: "Address")
+                .init(value: "", title: "Телефон"),
+                .init(value: "", title: "Адрес")
             ])
         ]
     }
@@ -107,16 +107,16 @@ final class ProductDetailViewViewModel {
         return section
     }
     
-//    public func fetchProductInfo() {
-//        let request = Request(pathComponent: product.id)
-////        print(request)
-//        Service.shared.execute(request, expecting: Advertisement.self) { result in
-//            switch result {
-//            case .success(let success):
-//                print(String(describing: success))
-//            case .failure(let error):
-//                print(String(describing: error))
-//            }
-//        }
-//    }
+    public func fetchProductInfo() {
+        let request = Request(pathComponent: product.id)
+//        print(request)
+        Service.shared.execute(request, expecting: Detail.self) { result in
+            switch result {
+            case .success(let success):
+                print(String(describing: success))
+            case .failure(let error):
+                print(String(describing: error))
+            }
+        }
+    }
 }

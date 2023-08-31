@@ -17,13 +17,9 @@ import Foundation
 final class ProductInfoCollectionViewCellViewModel {
     public let value: String
     public let title: String
-//    public let location: String
-//    public let createdDate: String
     
     init(value: String, title: String) {
         self.value = value
         self.title = title
-//        self.location = location
-//        self.createdDate = createdDate
     }
 }

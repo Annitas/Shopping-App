@@ -11,12 +11,12 @@ import UIKit
 final class ProductDetailViewController: UIViewController {
     private let viewModel: ProductDetailViewViewModel
     private let detailView: ProductDetailView
-    private let productInfo: Advertisement
+    private let productInfo: Detail
     
     init(viewModel: ProductDetailViewViewModel) {
         self.viewModel = viewModel
         self.detailView = ProductDetailView(frame: .zero, viewModel: viewModel)
-        self.productInfo = Advertisement(id: "", title: "", price: "", location: "", imageURL: "", createdDate: "")
+        self.productInfo = Detail(id: "", title: "", price: "", location: "", imageURL: "", createdDate: "", description: "", email: "", phoneNumber: "", address: "")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,7 +37,7 @@ final class ProductDetailViewController: UIViewController {
         
         detailView.collectionView?.delegate = self
         detailView.collectionView?.dataSource = self
-//        viewModel.fetchProductInfo()
+        viewModel.fetchProductInfo()
     }
 
     @objc func didTapShare() {
